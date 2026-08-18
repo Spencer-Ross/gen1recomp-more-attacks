@@ -14,17 +14,20 @@
 -- Shadow Claw: highCrit=true uses the move-record field introduced in
 --   gen1recomp Damage.lua to grant a boosted critical-hit rate.
 
+-- index: borrows the ROM animation/sound of an existing move with a similar feel.
+-- Multiple new moves can safely share an index — the string id is the unique key
+-- for all game logic; index is only used to look up ROM sprite/sound data.
 local newMoves = {
-  X_SCISSOR    = {id="X_SCISSOR",    name="X-SCISSOR",    type="BUG",    power=80, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical"},
-  SIGNAL_BEAM  = {id="SIGNAL_BEAM",  name="SIGNAL BEAM",  type="BUG",    power=75, accuracy=100, pp=15, effect="GEN2_CONFUSE_CHANCE",     category="special",  effectChance=26},
-  SHADOW_CLAW  = {id="SHADOW_CLAW",  name="SHADOW CLAW",  type="GHOST",  power=70, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical", highCrit=true},
-  DRAGON_CLAW  = {id="DRAGON_CLAW",  name="DRAGON CLAW",  type="DRAGON", power=80, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical"},
-  DARK_PULSE   = {id="DARK_PULSE",   name="DARK PULSE",   type="DARK",   power=80, accuracy=100, pp=15, effect="GEN2_FLINCH_CHANCE",      category="special",  effectChance=51},
-  AIR_SLASH    = {id="AIR_SLASH",    name="AIR SLASH",    type="FLYING", power=75, accuracy=95,  pp=15, effect="GEN2_FLINCH_CHANCE",      category="special",  effectChance=77},
-  IRON_HEAD    = {id="IRON_HEAD",    name="IRON HEAD",    type="STEEL",  power=80, accuracy=100, pp=15, effect="GEN2_FLINCH_CHANCE",      category="physical", effectChance=77},
-  FLASH_CANNON = {id="FLASH_CANNON", name="FLASH CANNON", type="STEEL",  power=80, accuracy=100, pp=10, effect="GEN2_SPECIAL_DOWN_CHANCE", category="special",  effectChance=26},
-  POISON_JAB   = {id="POISON_JAB",   name="POISON JAB",   type="POISON", power=80, accuracy=100, pp=20, effect="GEN2_POISON_CHANCE",      category="physical", effectChance=77},
-  POWER_GEM    = {id="POWER_GEM",    name="POWER GEM",    type="ROCK",   power=80, accuracy=100, pp=20, effect="NO_ADDITIONAL_EFFECT",    category="special"},
+  X_SCISSOR    = {id="X_SCISSOR",    name="X-SCISSOR",    index=163, type="BUG",    power=80, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical"},             -- borrows Slash anim
+  SIGNAL_BEAM  = {id="SIGNAL_BEAM",  name="SIGNAL BEAM",  index=60,  type="BUG",    power=75, accuracy=100, pp=15, effect="GEN2_CONFUSE_CHANCE",     category="special",  effectChance=26}, -- borrows Psybeam anim
+  SHADOW_CLAW  = {id="SHADOW_CLAW",  name="SHADOW CLAW",  index=163, type="GHOST",  power=70, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical", highCrit=true},   -- borrows Slash anim
+  DRAGON_CLAW  = {id="DRAGON_CLAW",  name="DRAGON CLAW",  index=163, type="DRAGON", power=80, accuracy=100, pp=15, effect="NO_ADDITIONAL_EFFECT",    category="physical"},             -- borrows Slash anim
+  DARK_PULSE   = {id="DARK_PULSE",   name="DARK PULSE",   index=247, type="DARK",   power=80, accuracy=100, pp=15, effect="GEN2_FLINCH_CHANCE",      category="special",  effectChance=51}, -- borrows Shadow Ball anim
+  AIR_SLASH    = {id="AIR_SLASH",    name="AIR SLASH",    index=16,  type="FLYING", power=75, accuracy=95,  pp=15, effect="GEN2_FLINCH_CHANCE",      category="special",  effectChance=77}, -- borrows Gust anim
+  IRON_HEAD    = {id="IRON_HEAD",    name="IRON HEAD",    index=29,  type="STEEL",  power=80, accuracy=100, pp=15, effect="GEN2_FLINCH_CHANCE",      category="physical", effectChance=77}, -- borrows Headbutt anim
+  FLASH_CANNON = {id="FLASH_CANNON", name="FLASH CANNON", index=63,  type="STEEL",  power=80, accuracy=100, pp=10, effect="GEN2_SPECIAL_DOWN_CHANCE", category="special",  effectChance=26}, -- borrows Hyper Beam anim
+  POISON_JAB   = {id="POISON_JAB",   name="POISON JAB",   index=40,  type="POISON", power=80, accuracy=100, pp=20, effect="GEN2_POISON_CHANCE",      category="physical", effectChance=77}, -- borrows Poison Sting anim
+  POWER_GEM    = {id="POWER_GEM",    name="POWER GEM",    index=88,  type="ROCK",   power=80, accuracy=100, pp=20, effect="NO_ADDITIONAL_EFFECT",    category="special"},              -- borrows Rock Throw anim
 }
 
 -- Full merged learnsets: Crystal baseline (gen2_moves_learnsets_251) + new moves.
