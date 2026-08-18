@@ -1,0 +1,17 @@
+{
+  "id": "more_attacks",
+  "name": "More Attacks",
+  "version": "1.0.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "GAMEPLAY",
+  "game_version": ">=0.1.37 <2.0.0",
+  "priority": 400,
+  "dependencies": [
+    "gen2_moves_learnsets_251@^2.1.0"
+  ],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "description": "Adds 10 Gen 3+ moves with historically-informed learnsets for #001-251: X-Scissor, Signal Beam, Shadow Claw, Dragon Claw, Dark Pulse, Air Slash, Iron Head, Flash Cannon, Poison Jab, Power Gem. Requires gen2_moves_learnsets_251."
+}
