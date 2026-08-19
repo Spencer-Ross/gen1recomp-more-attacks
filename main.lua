@@ -575,9 +575,29 @@ return function(mod)
     end
   end
 
-  -- Wire Gen 2 battle animations for each new move by pointing to an existing
-  -- move's animation script. The hex IDs are offsets into the Gold ROM extracted
-  -- by RomExtractorGen2; sharing them is read-only and safe.
+  -- Gen 1 (Blue) battle animations: register each new move using the seq/subanim
+  -- format extracted from the Gen 1 ROM, borrowing from a visually similar move.
+  -- subanim and tileset index into the Gen 1 sprite animation table.
+  local gen1Anims = {
+    X_SCISSOR    = { seq = { { delay=6, sound="SLASH",        subanim=15, tileset=0 } } },
+    SIGNAL_BEAM  = { seq = { { delay=3, sound="PSYBEAM",      subanim=46, tileset=0 },
+                              { effect="SE_FLASH_SCREEN_LONG" } } },
+    SHADOW_CLAW  = { seq = { { delay=6, sound="SLASH",        subanim=15, tileset=0 } } },
+    DRAGON_CLAW  = { seq = { { delay=6, sound="SLASH",        subanim=15, tileset=0 } } },
+    DARK_PULSE   = { seq = { { effect="SE_FLASH_SCREEN_LONG", sound="CONFUSION" } } },
+    AIR_SLASH    = { seq = { { delay=4, sound="RAZOR_WIND",   subanim=22, tileset=0 } } },
+    IRON_HEAD    = { seq = { { delay=6, sound="HEADBUTT",     subanim=5,  tileset=1 } } },
+    FLASH_CANNON = { seq = { { delay=3, sound="PSYBEAM",      subanim=46, tileset=0 },
+                              { effect="SE_FLASH_SCREEN_LONG" } } },
+    POISON_JAB   = { seq = { { delay=6, sound="POISON_STING", subanim=0,  tileset=0 } } },
+    POWER_GEM    = { seq = { { delay=4, sound="ROCK_THROW",   subanim=48, tileset=0 } } },
+  }
+  for id, anim in pairs(gen1Anims) do
+    mod.content.battle_anims:register(id, anim)
+  end
+
+  -- Gen 2 (Gold) battle animations: map each new move to an existing Gold ROM
+  -- animation script by hex address. Only active in Gold mode.
   mod.content.battle_anims:patch("moves", {
     X_SCISSOR    = "731f",  -- Fury Cutter (Bug slashing)
     SIGNAL_BEAM  = "67c2",  -- Psybeam (swirling beam)
