@@ -575,6 +575,22 @@ return function(mod)
     end
   end
 
+  -- Wire Gen 2 battle animations for each new move by pointing to an existing
+  -- move's animation script. The hex IDs are offsets into the Gold ROM extracted
+  -- by RomExtractorGen2; sharing them is read-only and safe.
+  mod.content.battle_anims:patch("moves", {
+    X_SCISSOR    = "731f",  -- Fury Cutter (Bug slashing)
+    SIGNAL_BEAM  = "67c2",  -- Psybeam (swirling beam)
+    SHADOW_CLAW  = "5d97",  -- Slash (claw/slash motion)
+    DRAGON_CLAW  = "5d97",  -- Slash (claw/slash motion)
+    DARK_PULSE   = "795f",  -- Shadow Ball (dark energy projectile)
+    AIR_SLASH    = "5b58",  -- Razor Wind (wind-cutting)
+    IRON_HEAD    = "626c",  -- Headbutt (ramming motion)
+    FLASH_CANNON = "5d05",  -- Hyper Beam (powerful energy beam)
+    POISON_JAB   = "644f",  -- Poison Sting (poison stab)
+    POWER_GEM    = "7913",  -- AncientPower (rock/gem energy)
+  })
+
   local n = 0
   for id, ls in pairs(learnsets) do
     mod.content.pokemon:patch(id, {
