@@ -620,5 +620,5 @@ return function(mod)
     n = n + 1
   end
 
-  mod.log:info("more_attacks v1.0.0: registered 10 Gen 3+ moves, patched " .. n .. " Pokemon learnsets")
+  mod.log:info("more_attacks v1.1.0: registered 10 Gen 3+ moves, patched " .. n .. " Pokemon learnsets, added battle animations")
 end

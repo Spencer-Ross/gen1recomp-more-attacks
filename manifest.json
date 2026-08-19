@@ -1,7 +1,7 @@
 {
   "id": "more_attacks",
   "name": "More Attacks",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
@@ -9,7 +9,7 @@
   "game_version": ">=0.1.37 <2.0.0",
   "priority": 400,
   "dependencies": [
-    "gen2_moves_learnsets_251@^2.1.0"
+    "gen2_moves_learnsets_251@^2.2.0"
   ],
   "optional_dependencies": [],
   "conflicts": [],
